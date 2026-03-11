@@ -50,7 +50,7 @@ canvas{max-height:240px}
   </div>
 </main>
 <script>
-const KEY="AIzaSyDbUI5yb8W_37WR_kLlIrRtDxXLAj9Z23A";
+const KEY="";
 const C=["#E86B3E","#3E8BE8","#3EC87A","#E8B83E","#9B59B6","#FB923C"];
 new Chart(document.getElementById("cat"),{type:"doughnut",data:{labels:["Electronics","Accessories"],datasets:[{data:[65000,8300],backgroundColor:["#E86B3E","#3E8BE8"],borderWidth:0}]},options:{cutout:"65%",plugins:{legend:{position:"bottom"}}}});
 new Chart(document.getElementById("reg"),{type:"bar",data:{labels:["North","South","East","West"],datasets:[{data:[17110,26125,18445,11620],backgroundColor:C,borderRadius:6}]},options:{plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>"$"+v.toLocaleString()}},x:{grid:{display:false}}}}});
