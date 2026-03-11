@@ -95,8 +95,15 @@ async function askGemini(){
     const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${KEY}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
     const d=await r.json();
     resp.innerHTML=d.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>").replace(/\n/g,"<br>");
-  }catch(e){resp.innerHTML="⚠️ Error. Try again!";}
-  btn.disabled=false;btn.textContent="Ask ✨";
+ }catch(e){
+const msg=e.message||"";
+if(msg.includes("429")||msg.includes("quota")){
+resp.innerHTML="⏳ Rate limit! Wait 30 sec then try again.";
+setTimeout(()=>{resp.innerHTML="✅ Ready! Ask now.";},30000);
+}else{
+resp.innerHTML="⚠️ Check internet. Try again!";
+}}
+    btn.disabled=false;btn.textContent="Ask ✨";
 }
 window.onload=()=>ask("What are the top 3 insights from this sales data?");
 </script>
